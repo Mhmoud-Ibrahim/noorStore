@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import api from './api'; 
 import { toast } from 'react-toastify';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function AddProduct() {
- // const navigate = useNavigate();
+ const navigate = useNavigate();
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -101,7 +101,7 @@ export default function AddProduct() {
         toast.success("تم إضافة المنتج بنجاح!");
         setImageCoverFile(null);
         setImagesFiles(null);
-        
+        navigate('/addProduct');
       }
     } catch (err: any) {
       console.error("Error details:", err.response?.data);
