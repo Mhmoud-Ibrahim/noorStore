@@ -141,6 +141,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import api from './api'; 
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 interface IProduct {
   _id: string;
@@ -226,6 +227,7 @@ export default function Products() {
               {products?.map((product) => (
                 <motion.div key={product._id} className="col-md-4 col-lg-3" variants={cardVariants}>
                    {/* الكارد كما هو بدون تغيير */}
+                  <Link to={`/productDetails/${product._id}`}>
                    <div className="card h-100 shadow-sm border-0 position-relative overflow-hidden" style={{ backgroundColor: '#777', color: '#fff', borderRadius: '15px' }}>
                       <span className="position-absolute top-0 end-0 m-2 px-2 py-1 small rounded" style={{ backgroundColor: product.stock > 0 ? '#ff6600' : '#dc3545', fontSize: '10px', color: '#000', fontWeight: 'bold', zIndex: 2 }}>
                         {product.stock > 0 ? `متوفر: ${product?.stock}` : 'نفذت'}
@@ -241,6 +243,7 @@ export default function Products() {
                         </div>
                       </div>
                    </div>
+                   </Link>
                 </motion.div>
               ))}
             </motion.div>

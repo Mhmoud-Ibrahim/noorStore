@@ -14,6 +14,7 @@ import Products from "./component/Products.tsx";
 import Profile from "./component/auth/Profile.tsx";
 import AddProduct from "./component/AddProduct.tsx";
 import Register from "./component/auth/Register.tsx";
+import ProductDetails from "./component/ProductDetails.tsx";
 
 function App() {
   let routers = createHashRouter([
@@ -26,6 +27,7 @@ function App() {
         { path: 'products', element: <Products /> },
         { path: 'profile', element: <Profile/> },
         { path: 'addProduct', element: <AddProduct/> },
+        { path: 'productDetails/:id', element: <ProductDetails/> },
 
 
         // { path: '*', element: <NotFound /> }
