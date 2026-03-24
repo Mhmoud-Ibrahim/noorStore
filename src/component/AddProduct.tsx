@@ -90,16 +90,15 @@ export default function AddProduct() {
       const response = await api.post('/api/product', finalData);
       console.log(response);
       if (response.data.message === "success" || response.status === 201) {
-
+        setFormData({
+       title: '',
+       description: '',
+       price: '',
+       costPrice: '',
+       stock: '',
+       category: '',
+     });
         toast.success("تم إضافة المنتج بنجاح!");
-           setFormData({
-          title: '',
-          description: '',
-          price: '',
-          costPrice: '',
-          stock: '',
-          category: '',
-        });
         setImageCoverFile(null);
         setImagesFiles(null);
         
