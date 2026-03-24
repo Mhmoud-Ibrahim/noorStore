@@ -299,7 +299,10 @@ export default function AddProduct() {
     }
   };
 
-  return (
+  return <>
+    <Helmet>
+  <title>المتجر | إضافة منتج جديد</title> 
+</Helmet>
     <div className="min-vh-100 py-5" style={{ backgroundColor: '#ddd' }}>
       <Helmet><title>إضافة منتج | لوحة التحكم</title></Helmet>
       <div className="container mt-5">
@@ -417,5 +420,6 @@ export default function AddProduct() {
         </motion.div>
       </div>
     </div>
-  );
+  
+  </>
 }

@@ -189,7 +189,10 @@ export default function Products() {
     visible: { y: 0, opacity: 1 }
   };
 
-  return (
+  return <> <Helmet>
+  {/* استخدم الأقواس المتعرجة مع الباك تيك لضمان تحويلها لنص صافي */}
+  <title>{`المتجر | المنتجات - صفحة ${page}`}</title>
+</Helmet>
     <div className="min-vh-100 py-5" style={{ backgroundColor: '#ddd', color: '#fff' }}>
       <Helmet>
         <title>المتجر | المنتجات - صفحة {page}</title>
@@ -271,5 +274,6 @@ export default function Products() {
         )}
       </div>
     </div>
-  );
+  </>
+   
 }
