@@ -195,7 +195,7 @@ export default function Products() {
 </Helmet>
     <div className="min-vh-100 py-5" style={{ backgroundColor: '#ddd', color: '#fff' }}>
       <Helmet>
-        <title>المتجر | المنتجات - صفحة {page}</title>
+         <title>{`المتجر | المنتجات - صفحة ${page}`}</title>
       </Helmet>
 
       <div className="container mt-5">
