@@ -225,13 +225,13 @@ export default function Products() {
                    {/* الكارد كما هو بدون تغيير */}
                    <div className="card h-100 shadow-sm border-0 position-relative overflow-hidden" style={{ backgroundColor: '#777', color: '#fff', borderRadius: '15px' }}>
                       <span className="position-absolute top-0 end-0 m-2 px-2 py-1 small rounded" style={{ backgroundColor: product.stock > 0 ? '#ff6600' : '#dc3545', fontSize: '10px', color: '#000', fontWeight: 'bold', zIndex: 2 }}>
-                        {product.stock > 0 ? `متوفر: ${product.stock}` : 'نفذت'}
+                        {product.stock > 0 ? `متوفر: ${product?.stock}` : 'نفذت'}
                       </span>
                       <div className="overflow-hidden" style={{ height: '200px' }}>
                         <img src={product.imageCover} className="w-100 h-100 object-fit-cover" alt={product.title} />
                       </div>
                       <div className="card-body d-flex flex-column">
-                        <h6 className="fw-bold text-truncate">{product.title}</h6>
+                        <h6 className="fw-bold text-truncate">{product?.title}</h6>
                         <div className="mt-auto d-flex justify-content-between align-items-center">
                           <span className="fw-bold" style={{ color: '#ff6600' }}>{product.price} ج.م</span>
                           <button className="btn btn-sm" style={{ backgroundColor: '#ff6600' }} disabled={product.stock === 0}>أضف</button>
