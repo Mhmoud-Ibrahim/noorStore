@@ -50,7 +50,7 @@ export default function Home() {
       <Helmet><title>نور ستور | الرئيسية</title></Helmet>
 
       {/* Hero Section - السلايدر العلوي النحيف مع لينك التفاصيل */}
-      <section className="py-3 text-white" style={{ background: 'linear-gradient(90deg, #222 0%, #000 100%)', borderBottom: '2px solid #ff6600' }}>
+      <section className="py-2 mt-3 text-white" style={{ background: 'linear-gradient(90deg, #222 0%, #000 100%)', borderBottom: '2px solid #ff6600' }}>
         <div className="container">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
