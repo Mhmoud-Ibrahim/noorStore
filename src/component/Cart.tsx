@@ -120,7 +120,7 @@ export default function Cart() {
                       
                       <div className="d-flex align-items-center">
                         <button 
-                          onClick={() => updateCount(item._id, item.quantity - 1)}
+                          onClick={() => updateCount(item?._id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                           className="btn btn-sm btn-outline-dark rounded-circle"
                         >-</button>
