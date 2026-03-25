@@ -89,35 +89,49 @@ const context = useContext(MainContext);
               initial="hidden"
               animate="visible"
             >
-              {products?.map((product) => (
-                <motion.div key={product._id} className="col-md-4 col-lg-3" variants={cardVariants}>
-                   {/* الكارد كما هو بدون تغيير */}
-                  <Link to={`/productDetails/${product._id}`}>
-                   <div className="card h-100 shadow-sm border-0 position-relative overflow-hidden" style={{ backgroundColor: '#777', color: '#fff', borderRadius: '15px' }}>
-                      <span className="position-absolute top-0 end-0 m-2 px-2 py-1 small rounded" style={{ backgroundColor: product.stock > 0 ? '#ff6600' : '#dc3545', fontSize: '10px', color: '#000', fontWeight: 'bold', zIndex: 2 }}>
-                        {product.stock > 0 ? `متوفر: ${product?.stock}` : 'نفذت'}
-                      </span>
-                      <div className="overflow-hidden" style={{ height: '200px' }}>
-                        <img src={product.imageCover} className="w-100 h-100 object-fit-cover" alt={product.title} />
-                      </div>
-                      <div className="card-body d-flex flex-column">
-                        <h6 className="fw-bold text-truncate">{product?.title}</h6>
-                        <div className="mt-auto d-flex justify-content-between align-items-center">
-                          <span className="fw-bold" style={{ color: '#ff6600' }}>{product.price} ج.م</span>
-                            <button 
-                            className="btn btn-sm fw-bold shadow-sm" 
-                            style={{ backgroundColor: '#ff6600', color: '#000' }} 
-                            disabled={product.stock === 0}
-                            onClick={() => addToCart && addToCart(product._id)}
-                          >
-                            أضف <i className="fa-solid fa-plus ms-1"></i>
-                          </button>
-                        </div>
-                      </div>
-                   </div>
-                   </Link>
-                </motion.div>
-              ))}
+             {products?.map((product) => (
+  <motion.div key={product._id} className="col-md-4 col-lg-3" variants={cardVariants}>
+    <div className="card h-100 shadow-sm border-0 position-relative overflow-hidden" style={{ backgroundColor: '#777', color: '#fff', borderRadius: '15px' }}>
+      
+      {/* البادج والـ Link على الصورة فقط */}
+      <span className="position-absolute top-0 end-0 m-2 px-2 py-1 small rounded" style={{ backgroundColor: product.stock > 0 ? '#ff6600' : '#dc3545', fontSize: '10px', color: '#000', fontWeight: 'bold', zIndex: 2 }}>
+        {product.stock > 0 ? `متوفر: ${product?.stock}` : 'نفذت'}
+      </span>
+
+      {/* الـ Link هنا يبدأ وينتهي عند حدود الصورة والعنوان */}
+      <Link to={`/productDetails/${product._id}`} className="text-decoration-none text-white">
+        <div className="overflow-hidden" style={{ height: '200px' }}>
+          <img src={product.imageCover} className="w-100 h-100 object-fit-cover" alt={product.title} />
+        </div>
+        <div className="p-3 pb-0">
+          <h6 className="fw-bold text-truncate">{product?.title}</h6>
+        </div>
+      </Link>
+
+      {/* منطقة الأكشن (السعر والزرار) خارج الـ Link تماماً */}
+      <div className="card-body d-flex flex-column pt-0">
+        <div className="mt-auto d-flex justify-content-between align-items-center">
+          <span className="fw-bold" style={{ color: '#ff6600' }}>{product.price} ج.م</span>
+          
+          <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="btn btn-sm fw-bold shadow-sm" 
+            style={{ backgroundColor: '#ff6600', color: '#000', zIndex: 3 }} 
+            disabled={product.stock === 0}
+            onClick={(e) => {
+              e.preventDefault(); // تأكيد إضافي لمنع أي سلوك افتراضي
+              addToCart && addToCart(product._id);
+            }}
+          >
+            أضف <i className="fa-solid fa-plus ms-1"></i>
+          </motion.button>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+))}
+
             </motion.div>
 
             {/* أزرار الباجينيشن */}
