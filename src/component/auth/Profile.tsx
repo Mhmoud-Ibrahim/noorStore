@@ -181,7 +181,7 @@ export default function Profile() {
     onSubmit: async (values) => {
       try {
         // استخدام المعرف _id والمسار الصحيح للباك إند
-        const res = await api.put(`/api/user/${user?._id}`, values);
+        const res = await api.patch(`/api/user/${user?.userId}`, values);
         if (res.data.message === "success") {
           setUser(res.data.user);
           setIsEditing(false);
