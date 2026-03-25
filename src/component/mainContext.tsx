@@ -77,6 +77,7 @@ import { toast } from "react-toastify";
 export interface UserData {
     id?: string;
     _id: string;
+    userId: string;
     name: string;
     email: string;
     role: string;

@@ -203,7 +203,8 @@ export default function Profile() {
 
     try {
       setUploading(true);
-      const res = await api.put(`/api/user/${user?._id}`, formDataImg);
+      const res = await api.put(`/api/user/${user?.userId}`, formDataImg);
+      console.log(res)
       if (res.data.message === "success") {
         setUser(res.data.user);
         toast.success("تم تغيير الصورة الشخصية بنجاح 📸");
