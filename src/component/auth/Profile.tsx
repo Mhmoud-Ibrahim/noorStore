@@ -182,6 +182,7 @@ export default function Profile() {
       try {
         // استخدام المعرف _id والمسار الصحيح للباك إند
         const res = await api.patch(`/api/user/${user?.userId}`, values);
+        console.log(res)
         if (res.data.message === "success") {
           setUser(res.data.user);
           setIsEditing(false);
