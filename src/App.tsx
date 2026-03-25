@@ -15,6 +15,7 @@ import Profile from "./component/auth/Profile.tsx";
 import AddProduct from "./component/AddProduct.tsx";
 import Register from "./component/auth/Register.tsx";
 import ProductDetails from "./component/ProductDetails.tsx";
+import Cart from "./component/Cart.tsx";
 
 function App() {
   let routers = createHashRouter([
@@ -28,6 +29,7 @@ function App() {
         { path: 'profile', element: <Profile/> },
         { path: 'addProduct', element: <AddProduct/> },
         { path: 'productDetails/:id', element: <ProductDetails/> },
+        { path: 'cart', element: <Cart/> },
 
 
         // { path: '*', element: <NotFound /> }
