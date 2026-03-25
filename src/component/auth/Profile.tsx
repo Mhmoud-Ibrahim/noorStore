@@ -234,11 +234,11 @@ export default function Profile() {
                   <div className="position-relative d-inline-block">
                     <motion.img 
                       key={user?.userImage} // لضمان تحديث الصورة فور تغييرها
-                      src={user?.userImage || 'https://via.placeholder.com'} 
+                      src={user?.userImage || ''} 
                       className="rounded-circle border border-3 border-warning shadow"
                       style={{ width: '150px', height: '150px', objectFit: 'cover', backgroundColor: '#333' }}
                       alt="profile"
-                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com'; }}
+                      onError={(e) => { (e.target as HTMLImageElement).src = ''; }}
                     />
                     <button 
                       onClick={() => fileInputRef.current?.click()}
