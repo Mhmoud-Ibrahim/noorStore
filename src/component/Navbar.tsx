@@ -18,7 +18,6 @@ function Navbar() {
             <div className="container d-flex align-items-center justify-content-between position-relative">
                 
                 <div className="d-flex align-items-center gap-2">
-                    {/* أيقونة المنيو للشاشات الصغيرة فقط تظهر للمسجلين */}
                     {user && (
                         <button 
                             className="btn d-lg-none p-0 border-0 text-white" 
@@ -26,18 +25,16 @@ function Navbar() {
                         >
                             <i className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars-staggered'} fs-4`} style={{ color: '#ff6600' }}></i>
                         </button>
-                    )}
-                    
+                    )} 
                     <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
                         <Link className="navbar-brand fw-bold m-0" to="home" style={{ color: '#ff6600' }}>
                             <small>NOOR</small>
                         </Link>
                     </motion.div>
                 </div>
-
                 {/* الروابط: تظهر فقط في الشاشات الكبيرة */}
                 <ul className="navbar-nav d-none d-lg-flex flex-row gap-3 mb-0 mx-auto">
-                    {['home', 'products','orders'].map((item) => (
+                    {['home', 'products', 'about', 'contact'].map((item) => (
                         <motion.li key={item} whileHover={{ scale: 1.05 }} className="nav-item rounded-pill px-2 border" style={{ borderColor: '#ff6600' }}>
                             <Link className="nav-link text-white text-capitalize small" to={item}>{item.replace('-', ' ')}</Link>
                         </motion.li>
