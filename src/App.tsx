@@ -16,6 +16,11 @@ import AddProduct from "./component/AddProduct.tsx";
 import Register from "./component/auth/Register.tsx";
 import ProductDetails from "./component/ProductDetails.tsx";
 import Cart from "./component/Cart.tsx";
+import About from "./component/ِAbout.tsx";
+import Contact from "./component/Contact.tsx";
+import UserManagement from "./component/UserManagement.tsx";
+import ProductManagement from "./component/ProductManagement.tsx";
+import UpdateProduct from "./component/UpdateProduct.tsx";
 
 function App() {
   let routers = createHashRouter([
@@ -30,6 +35,11 @@ function App() {
         { path: 'addProduct', element: <AddProduct/> },
         { path: 'productDetails/:id', element: <ProductDetails/> },
         { path: 'cart', element: <Cart/> },
+        { path: 'about', element: <About/> },
+        { path: 'contact', element: <Contact/> },
+        { path: 'userManagement', element: <UserManagement/> },
+        { path: 'productManagement', element: <ProductManagement/> },
+        { path: 'updateProduct/:id', element: <UpdateProduct/> },
 
 
         // { path: '*', element: <NotFound /> }

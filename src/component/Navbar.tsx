@@ -143,7 +143,7 @@ function Navbar() {
                         </div>
                     ) : (
                         <div className="d-flex align-items-center gap-3">
-                            {/* أيقونة السلة مع البادج */}
+                            {/* عدد العناصر في السلة */}    
                             <Link to="/cart" className="text-decoration-none position-relative px-2">
                                 <i className="fa-solid fa-cart-shopping fs-5 text-white"></i>
                                 {cartCount > 0 && (
