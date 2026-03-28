@@ -148,7 +148,7 @@ export function MainProvider({ children }: { children: ReactNode }) {
                 if (res.data.status === "success") {
                     setUser(res.data.data);
                     setToken(res.data.token);
-                    // جلب السلة فور التأكد من تسجيل الدخول
+                  console.log(res);
                     getCartCount();
                 }
             } catch (err) { 
