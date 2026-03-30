@@ -78,7 +78,7 @@ export default function EditProduct() {
         const res = await api.put(`/api/product/${id}`, formData);
         if (res.data.message === "success") {
           toast.success("تم تحديث المنتج بنجاح ✨");
-          navigate('/admin/products'); // العودة لجدول الإدارة
+          navigate('/productManagement'); // العودة لجدول الإدارة
         }
       } catch (err: any) {
         toast.error(err.response?.data?.message || "فشل التحديث");

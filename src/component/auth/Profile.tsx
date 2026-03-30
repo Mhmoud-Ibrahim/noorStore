@@ -115,7 +115,7 @@ export default function Profile() {
                     <span><i className="fas fa-box me-2 text-info"></i> إدارة المنتجات</span>
                     <i className="fas fa-chevron-left small opacity-50"></i>
                   </Link>
-                  <Link to="/admin/orders" className="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 d-flex justify-content-between align-items-center">
+                  <Link to="/orders" className="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 d-flex justify-content-between align-items-center">
                     <span><i className="fas fa-shopping-cart me-2 text-info"></i> الطلبات الواردة</span>
                     <i className="fas fa-chevron-left small opacity-50"></i>
                   </Link>

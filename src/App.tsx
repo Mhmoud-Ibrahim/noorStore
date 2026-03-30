@@ -21,6 +21,7 @@ import Contact from "./component/Contact.tsx";
 import UserManagement from "./component/UserManagement.tsx";
 import ProductManagement from "./component/ProductManagement.tsx";
 import UpdateProduct from "./component/UpdateProduct.tsx";
+import OrderManagement from "./component/Orders.tsx";
 
 function App() {
   let routers = createHashRouter([
@@ -39,6 +40,7 @@ function App() {
         { path: 'contact', element: <Contact/> },
         { path: 'userManagement', element: <UserManagement/> },
         { path: 'productManagement', element: <ProductManagement/> },
+        { path: 'orders', element: <OrderManagement/> },
         { path: 'updateProduct/:id', element: <UpdateProduct/> },
 
 
