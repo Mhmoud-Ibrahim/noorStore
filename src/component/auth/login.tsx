@@ -211,7 +211,7 @@ export default function Register() {
 
   // دالة للتعامل مع تسجيل جوجل
   const handleGoogleLogin = () => {
-    window.location.href = "noor-store-five.vercel.app";
+    window.location.href = "/";
   };
 
   let validationSchema = Yup.object({
