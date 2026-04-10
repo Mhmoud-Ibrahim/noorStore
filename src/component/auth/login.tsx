@@ -200,7 +200,7 @@ export default function Register() {
     try {
       const response = await api.post('/auth/signup', values);
       if (response.data.message === 'success') {
-        navigate('/login');
+        navigate('/');
       }
     } catch (err: any) {
       setErrorMsg(err.response?.data?.message || "حدث خطأ ما");
