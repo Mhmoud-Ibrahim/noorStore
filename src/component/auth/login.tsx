@@ -211,8 +211,9 @@ export default function Register() {
 
   // دالة للتعامل مع تسجيل جوجل
   const handleGoogleLogin = () => {
-    window.location.href = "/";
-  };
+  // نوجه المستخدم لتبدأ عملية الـ Authentication من السيرفر
+  window.location.href = "https://vercel.app"; 
+};
 
   let validationSchema = Yup.object({
     name: Yup.string().required('Name is required').min(4, 'Must be at least 4 characters'),
