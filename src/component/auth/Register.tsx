@@ -1,9 +1,7 @@
-
 import { useFormik } from "formik";
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-
 import { motion } from "framer-motion"; 
 import { Helmet } from "react-helmet-async";
 import api from "../api.ts";
@@ -38,27 +36,32 @@ export default function Register() {
     visible: { opacity: 1, x: 0 },
   };
 
+  // دالة التسجيل التقليدي
   async function signup(values: RegisterValues) {
     setLoading(true);
-    const response = await api.post('/auth/signup', values).catch(err => {
-        console.log(response)
-      setLoading(false);
-      setErrorMsg(err.response?.data?.message || "حدث خطأ ما");
-      return null;
-    });
-
-    if (response && response.data) {
+    setErrorMsg('');
+    try {
+      const response = await api.post('/auth/signup', values);
       if (response.data.message === 'success') {
         navigate('/login');
       }
+    } catch (err: any) {
+      setErrorMsg(err.response?.data?.message || "حدث خطأ ما");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
+  // دالة تسجيل جوجل (توجيه مباشر لرابط الباك إند)
+  const handleGoogleLogin = () => {
+    // استبدل الرابط برابط السيرفر الخاص بك
+    window.location.href = "http://localhost:3000/api/v1/auth/google"; 
+  };
+
   let validationSchema = Yup.object({
-    name: Yup.string().required('name is required').min(4, 'must less than 4 digites'),
+    name: Yup.string().required('name is required').min(4, 'must be at least 4 characters'),
     email: Yup.string().required('email is required').email().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'email invalid'),
-    password: Yup.string().required('password is required').matches(/^[a-zA-Z0-9]{1,10}$/, 'EX:aA1234')
+    password: Yup.string().required('password is required').matches(/^[a-zA-Z0-9]{6,10}$/, 'Password must be 6-10 characters')
   });
 
   let formik = useFormik({
@@ -70,10 +73,10 @@ export default function Register() {
   const togglePassword = () => setShowPassword(!showPassword);
 
   return <>
-  <Helmet>
-          <title>Register </title>
-          <meta name="description" content="Register " />
-        </Helmet>
+    <Helmet>
+      <title>Register | Noor Store</title>
+      <meta name="description" content="Create a new account" />
+    </Helmet>
     
     <form onSubmit={formik.handleSubmit} className="mt-5 d-flex flex-column">
       <motion.div 
@@ -88,7 +91,7 @@ export default function Register() {
           <h3 style={{ color: '#ff6600' }}>Register now</h3>
         </motion.div>
 
-        {errorMsg && <div className='alert alert-danger mt-2'>{errorMsg}</div>}
+        {errorMsg && <div className='alert alert-danger mt-2 small text-center'>{errorMsg}</div>}
 
         <motion.div variants={itemVariants} className="mt-2">
           <label htmlFor="name">Name:</label>
@@ -115,29 +118,35 @@ export default function Register() {
 
         <motion.div variants={itemVariants} className="text-center m-auto">
           {loading ? (
-            <button 
-              disabled 
-              type='button' 
-              className='btn mt-2 w-75 mb-2'
-              style={{ backgroundColor: '#ff6600', color: '#000', border: 'none' }}
-            > 
+            <button disabled type='button' className='btn mt-2 w-100 mb-2' style={{ backgroundColor: '#ff6600', color: '#000' }}> 
               <i className='fas fa-spinner fa-spin'></i>
             </button>
           ) : (
             <button 
               disabled={!(formik.dirty && formik.isValid)} 
               type='submit' 
-              className='btn mt-2 mb-2 w-75 fw-bold'
-              style={{ 
-                backgroundColor: '#ff6600', 
-                color: '#000', 
-                border: 'none',
-                opacity: !(formik.dirty && formik.isValid) ? 0.6 : 1 
-              }}
+              className='btn mt-2 mb-2 w-100 fw-bold'
+              style={{ backgroundColor: '#ff6600', color: '#000', opacity: !(formik.dirty && formik.isValid) ? 0.6 : 1 }}
             >
               Register
             </button>
           )}
+
+          {/* فاصل OR */}
+          <div className="d-flex align-items-center my-3">
+            <hr className="flex-grow-1" style={{borderColor: '#444'}} />
+            <span className="mx-2 small text-muted">OR</span>
+            <hr className="flex-grow-1" style={{borderColor: '#444'}} />
+          </div>
+
+          {/* زر Google */}
+          <button 
+            type="button" 
+            onClick={handleGoogleLogin} 
+            className="btn btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2 mb-2"
+          >
+            <i className="fab fa-google text-danger"></i> Continue with Google
+          </button>
         </motion.div>
       </motion.div>
     </form>
