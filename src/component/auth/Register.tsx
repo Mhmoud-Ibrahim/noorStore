@@ -55,7 +55,7 @@ export default function Register() {
   // دالة تسجيل جوجل (توجيه مباشر لرابط الباك إند)
   const handleGoogleLogin = () => {
     // استبدل الرابط برابط السيرفر الخاص بك
-    window.location.href = "http://localhost:3000/api/v1/auth/google"; 
+    window.location.href = "http://localhost:3000/auth/google"; 
   };
 
   let validationSchema = Yup.object({
