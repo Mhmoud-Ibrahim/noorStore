@@ -55,7 +55,7 @@ export default function Register() {
   // دالة تسجيل جوجل (توجيه مباشر لرابط الباك إند)
   const handleGoogleLogin = () => {
     // استبدل الرابط برابط السيرفر الخاص بك
-    window.location.href = "http://localhost:3000/auth/google"; 
+    window.location.href = "https://noor-server-ts.vercel.app/auth/google"; 
   };
 
   let validationSchema = Yup.object({
