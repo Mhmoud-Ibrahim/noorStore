@@ -24,6 +24,7 @@ import UpdateProduct from "./component/UpdateProduct.tsx";
 import OrderManagement from "./component/Orders.tsx";
 import ForgotPassword from "./component/auth/ForgotPassword.tsx";
 import ResetPassword from "./component/auth/ResetPassword.tsx";
+
 function App() {
   let routers = createHashRouter([
     {
