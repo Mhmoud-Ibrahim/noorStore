@@ -53,7 +53,7 @@ export default function Register() {
   }
 
   const handleGoogleLogin = () => {
-    window.location.href = "https://noor-server-ts.vercel.app"; 
+    window.location.href = "https://noor-server-ts.vercel.app/auth/google"; 
   };
 
   let validationSchema = Yup.object({
