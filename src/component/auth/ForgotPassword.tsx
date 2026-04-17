@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import api from '../api'; 
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
-
+let navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -18,6 +18,9 @@ export default function ForgotPassword() {
       if (response.data.status === "success") {
         toast.success("تم إرسال رمز استعادة كلمة المرور لإيميلك");
         console.log("Reset Token:", response.data.resetToken); // للتيست فقط
+        setTimeout(() => {
+        navigate('/reset-password'); 
+    }, 2000);
       }
     } catch (err: any) {
       const msg = err.response?.data?.message || "فشل في إرسال الرمز";
