@@ -133,7 +133,7 @@ export default function Login() {
                 opacity: !(formik.dirty && formik.isValid) ? 0.6 : 1 
               }}
             >
-              Register
+              Login
             </button>
           )}
         </motion.div>
