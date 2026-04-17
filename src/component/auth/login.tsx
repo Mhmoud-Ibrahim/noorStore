@@ -1,8 +1,7 @@
-
 import { useFormik } from "formik";
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // أضفنا Link هنا
 
 import { motion } from "framer-motion"; 
 import { Helmet } from "react-helmet-async";
@@ -40,7 +39,6 @@ export default function Login() {
   async function signup(values: RegisterValues) {
     setLoading(true);
     const response = await api.post('/auth/signin', values).catch(err => {
-        console.log(response)
       setLoading(false);
       setErrorMsg(err.response?.data?.message || "حدث خطأ ما");
       return null;
@@ -104,6 +102,13 @@ export default function Login() {
             </span>
           </div>
           {formik.errors.password && formik.touched.password && <div className='text-danger mb-2 small'>{formik.errors.password}</div>}
+        </motion.div>
+
+        {/* إضافة لينك نسيت كلمة السر بنفس استايلك */}
+        <motion.div variants={itemVariants} className="text-end mb-2">
+          <Link to="/forgot-password" style={{ color: '#ff6600', fontSize: '13px', textDecoration: 'none' }}>
+            Forgot Password?
+          </Link>
         </motion.div>
 
         <motion.div variants={itemVariants} className="text-center m-auto">
