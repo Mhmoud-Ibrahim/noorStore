@@ -19,7 +19,7 @@ let navigate = useNavigate();
         toast.success("تم إرسال رمز استعادة كلمة المرور لإيميلك");
         console.log("Reset Token:", response.data.resetToken); // للتيست فقط
         setTimeout(() => {
-        navigate('/reset-password'); 
+        navigate('/reset-password', { state: { resetToken: response.data.resetToken } }); 
     }, 2000);
       }
     } catch (err: any) {

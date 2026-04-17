@@ -41,7 +41,7 @@ function App() {
         { path: 'about', element: <About/> },
         { path: 'contact', element: <Contact/> },
          {path:'/forgot-password',element:<ForgotPassword/>},
-      {path:'/reset-password/:token',element:<ResetPassword/>},
+      {path:'reset-password',element:<ResetPassword/>},
         { path: 'userManagement', element: <UserManagement/> },
         { path: 'productManagement', element: <ProductManagement/> },
         { path: 'orders', element: <OrderManagement/> },
