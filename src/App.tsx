@@ -22,7 +22,8 @@ import UserManagement from "./component/UserManagement.tsx";
 import ProductManagement from "./component/ProductManagement.tsx";
 import UpdateProduct from "./component/UpdateProduct.tsx";
 import OrderManagement from "./component/Orders.tsx";
-
+import ForgotPassword from "./component/auth/ForgotPassword.tsx";
+import ResetPassword from "./component/auth/ResetPassword.tsx";
 function App() {
   let routers = createHashRouter([
     {
@@ -38,6 +39,8 @@ function App() {
         { path: 'cart', element: <Cart/> },
         { path: 'about', element: <About/> },
         { path: 'contact', element: <Contact/> },
+         {path:'/forgot-password',element:<ForgotPassword/>},
+      {path:'/reset-password/:token',element:<ResetPassword/>},
         { path: 'userManagement', element: <UserManagement/> },
         { path: 'productManagement', element: <ProductManagement/> },
         { path: 'orders', element: <OrderManagement/> },
