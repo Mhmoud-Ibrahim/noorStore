@@ -105,26 +105,7 @@ const message ="Hello, I would like to place an order";
               <div className="p-4 rounded-4 shadow-sm bg-dark border-0" style={{ borderTop: '4px solid #ff6600 !important' }}>
                 <h5 className="fw-bold mb-4 text-start">إتمام العملية</h5>
                 
-                {/* خيارات الدفع */}
-                <div className="mb-4 text-start">
-                  <label className="small text-secondary mb-2">اختر وسيلة الدفع:</label>
-                  <div 
-                    onClick={() => setPaymentMethod('cash')}
-                    className={`p-2 rounded-3 mb-2 border cursor-pointer ${paymentMethod === 'cash' ? 'border-warning bg-black' : 'border-secondary'}`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <input type="radio" checked={paymentMethod === 'cash'} readOnly className="me-2" />
-                    <small>كاش (Cash)</small>
-                  </div>
-                  <div 
-                    onClick={() => setPaymentMethod('card')}
-                    className={`p-2 rounded-3 border cursor-pointer ${paymentMethod === 'card' ? 'border-warning bg-black' : 'border-secondary'}`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <input type="radio" checked={paymentMethod === 'card'} readOnly className="me-2" />
-                    <small>فيزا / ماستر كارد</small>
-                  </div>
-                </div>
+            
 
                 <div className="d-flex justify-content-between mb-2">
                   <span className="text-secondary">الإجمالي</span>
