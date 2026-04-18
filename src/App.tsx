@@ -46,8 +46,6 @@ function App() {
         { path: 'productManagement', element: <ProductManagement/> },
         { path: 'orders', element: <OrderManagement/> },
         { path: 'updateProduct/:id', element: <UpdateProduct/> },
-
-
         // { path: '*', element: <NotFound /> }
       ]
     }
