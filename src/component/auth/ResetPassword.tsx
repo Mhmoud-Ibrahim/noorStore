@@ -20,7 +20,7 @@ export default function ResetPassword() {
     try {
       // بنبعت التوكن في الرابط والباسورد في الـ body
       const response = await api.patch(
-        `/auth/forgotPassword/${formData.token}`,
+        `/auth/resetPassword/${formData.token}`,
         {
           password: formData.password,
         },
