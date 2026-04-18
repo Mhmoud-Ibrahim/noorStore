@@ -43,7 +43,7 @@ export default function Cart() {
 
   // إتمام الطلب (Checkout)
 const handleCheckout = async () => {
-const phoneNumber = "971526176027";
+const phoneNumber = "+971526176027";
 
   const whatsappUrl = `https://wa.me${phoneNumber}`;
 
