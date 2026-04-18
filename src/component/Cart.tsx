@@ -44,9 +44,9 @@ export default function Cart() {
 
   // إتمام الطلب (Checkout)
 const handleCheckout = async () => {
-const phoneNumber = "201278576173";
-const message ="Hello, I would like to place an order";
-  const whatsappUrl = `https://wa.me${phoneNumber}?text=${encodeURIComponent(message)}`;
+const phoneNumber = "00201278576173";
+
+  const whatsappUrl = `https://wa.me${phoneNumber}`;
   
   // فتح الرابط في صفحة جديدة
   window.open(whatsappUrl, "_blank");
