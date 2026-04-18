@@ -9,7 +9,6 @@ export default function Cart() {
   const [cart, setCart] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card'>('cash');
  
 
   const fetchCart = async () => {
@@ -47,8 +46,7 @@ const handleCheckout = async () => {
 const phoneNumber = "00201278576173";
 
   const whatsappUrl = `https://wa.me${phoneNumber}`;
-  
-  // فتح الرابط في صفحة جديدة
+
   window.open(whatsappUrl, "_blank");
 };
 
