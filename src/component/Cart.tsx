@@ -45,7 +45,7 @@ export default function Cart() {
 const handleCheckout = async () => {
 
   // أضفنا / هنا بعد كلمة me
-  const whatsappUrl = `https://wa.me/971526176027`; 
+  const whatsappUrl = `https://wa.me/+201120797613`; 
   
   window.open(whatsappUrl, "_blank");
 };
