@@ -77,7 +77,11 @@ export default function Profile() {
             >
               <div className="position-relative d-inline-block mb-3">
                 <div className="rounded-circle overflow-hidden border border-3 border-warning shadow" style={{ width: '150px', height: '150px' }}>
-                  <img src={user?.userImage } className="w-100 h-100 object-fit-cover" alt="profile" />
+                  <img src={`${user?.userImage}?t=${new Date().getTime()}`} className="w-100 h-100 object-fit-cover" alt="profile" />
+                  {uploading && <div className="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-50 d-flex align-items-center justify-content-center">
+                    <i className="fas fa-spinner fa-spin"></i>
+                  </div>}
+
                 </div>
                 <button onClick={() => fileInputRef.current?.click()} className="btn btn-sm position-absolute bottom-0 end-0 rounded-circle" style={{ backgroundColor: '#ff6600', color: '#000', width: '40px', height: '40px' }}>
                   {uploading ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-camera"></i>}
