@@ -8,19 +8,23 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
-let navigate = useNavigate();
+  let navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const response = await api.post('/auth/forgotPassword', { email });
+      
+      // التعديل هنا: بنتحقق من نجاح الإرسال فقط
       if (response.data.status === "success") {
-        toast.success("تم إرسال رمز استعادة كلمة المرور لإيميلك");
-        console.log("Reset Token:", response.data.resetToken); // للتيست فقط
+        toast.success("تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني");
+        
+        // التوجه لصفحة التعين مباشرة بدون تمرير توكنات في الـ state
         setTimeout(() => {
-        navigate('/reset-password', { state: { resetToken: response.data.resetToken } }); 
-    }, 2000);
+          navigate('/reset-password'); 
+        }, 2000);
       }
     } catch (err: any) {
       const msg = err.response?.data?.message || "فشل في إرسال الرمز";
@@ -43,14 +47,15 @@ let navigate = useNavigate();
           <h2 className="fw-bold mb-4" style={{ borderRight: '5px solid #ff6600', paddingRight: '15px', color: '#333' }}>
             نسيت كلمة المرور؟
           </h2>
-          <p className="text-muted mb-4">أدخل بريدك الإلكتروني وسنرسل لك رابطاً لاستعادة حسابك.</p>
+          {/* تم تعديل النص ليناسب الـ OTP */}
+          <p className="text-muted mb-4">أدخل بريدك الإلكتروني وسنرسل لك رمز تحقق (OTP) لاستعادة حسابك.</p>
           
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label className="fw-bold text-dark mb-1">البريد الإلكتروني</label>
               <input 
                 type="email" 
-                className="form-control" 
+                className="form-control shadow-none" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
@@ -66,7 +71,7 @@ let navigate = useNavigate();
               className="btn w-100 fw-bold py-2 mt-3 shadow-sm" 
               style={{ backgroundColor: '#ff6600', color: '#fff' }}
             >
-              {loading ? <><i className="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...</> : "إرسال رمز الاستعادة"}
+              {loading ? <><i className="fas fa-spinner fa-spin me-2"></i> جاري الإرسال...</> : "إرسال رمز التحقق"}
             </motion.button>
 
             <div className="text-center mt-4">

@@ -9,7 +9,7 @@ export default function ResetPassword() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    token: "",
+    otp: "", // غيرنا الاسم لـ otp عشان يبقى أوضح
     password: "",
   });
 
@@ -18,13 +18,14 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      // إرسال الـ OTP في الرابط والباسورد في الـ body
-      const response = await api.patch(
-        `/auth/resetPassword/${formData.token}`,
-        { password: formData.password }
-      );
+      // التعديل هنا: بنبعت طلب PATCH لـ /resetPassword والبيانات كلها في الـ body
+      const response = await api.patch("/auth/resetPassword", {
+        otp: formData.otp,
+        password: formData.password
+      });
 
-      if (response.data.message === "success") {
+      // ملاحظة: لو الباك-إند بيرجع status: "success" أو message: "success"
+      if (response.data.status === "success" || response.data.message === "success") {
         toast.success("تم تغيير كلمة المرور بنجاح!");
         navigate("/login");
       }
@@ -58,8 +59,9 @@ export default function ResetPassword() {
                 className="form-control text-center fw-bold"
                 placeholder="000000"
                 maxLength={6}
-                value={formData.token}
-                onChange={(e) => setFormData({ ...formData, token: e.target.value.replace(/\D/g, "") })}
+                value={formData.otp}
+                // تحديث الـ otp مع التأكد إنه أرقام بس
+                onChange={(e) => setFormData({ ...formData, otp: e.target.value.replace(/\D/g, "") })}
                 required
                 style={{ letterSpacing: "8px", fontSize: "1.5rem", border: "2px solid #ff6600" }}
               />
