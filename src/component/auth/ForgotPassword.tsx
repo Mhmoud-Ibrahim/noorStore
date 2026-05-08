@@ -16,8 +16,7 @@ export default function ForgotPassword() {
 
     try {
       const response = await api.post('/auth/forgotPassword', { email });
-      
-      // التعديل هنا: بنتحقق من نجاح الإرسال فقط
+      console.log(response);
       if (response.data.status === "success") {
         toast.success("تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني");
         

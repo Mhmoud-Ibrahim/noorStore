@@ -48,8 +48,8 @@ export default function EditProduct() {
   const formik = useFormik({
     initialValues: { title: '', description: '', price: 0, stock: 0, category: '' },
     validationSchema: Yup.object({
-      title: Yup.string().min(2, 'قصير جداً').required('مطلوب'),
-      description: Yup.string().min(10, 'الوصف قصير').required('مطلوب'),
+      title: Yup.string().min(1, 'قصير جداً').required('مطلوب'),
+      description: Yup.string().min(1, 'الوصف قصير').required('مطلوب'),
       price: Yup.number().min(1, 'السعر غير منطقي').required('مطلوب'),
       stock: Yup.number().min(0, 'المخزون غير صحيح').required('مطلوب'),
     }),

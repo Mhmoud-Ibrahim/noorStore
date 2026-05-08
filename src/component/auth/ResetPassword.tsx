@@ -18,7 +18,7 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      // التعديل هنا: بنبعت طلب PATCH لـ /resetPassword والبيانات كلها في الـ body
+  
       const response = await api.patch("/auth/resetPassword", {
         otp: formData.otp,
         password: formData.password
