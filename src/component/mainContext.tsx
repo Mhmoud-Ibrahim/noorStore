@@ -165,7 +165,7 @@ export function MainProvider({ children }: { children: ReactNode }) {
             await api.post('/auth/logout');
             setUser(null);
             setToken(null);
-            setCartCount(0); // تصغير السلة عند تسجيل الخروج
+            setCartCount(0);
             window.location.href = "/login";
         } catch (error) {
             console.error("Logout failed", error);
