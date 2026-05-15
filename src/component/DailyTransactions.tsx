@@ -21,7 +21,7 @@ export default function DailyTransactions() {
   // جلب قائمة المنتجات لتحديث حقول الاختيار والمخزون المباشر
   const fetchProducts = async () => {
     try {
-      const res = await api.get("/api/products"); // تأكد من مسار جلب المنتجات لديك في السيرفر
+      const res = await api.get("/api/product"); // تأكد من مسار جلب المنتجات لديك في السيرفر
       setProducts(res.data.products || []);
     } catch (err) {
       console.error("فشل في تحديث قائمة المنتجات");
