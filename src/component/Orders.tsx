@@ -124,8 +124,8 @@ export default function OrderManagement() {
                         <div className="text-info fw-bold small">{order.user?.name || 'غير معروف'}</div>
                       </td>
                       <td className="ps-4">
-                
-                        <div className="text-info fw-bold small">{order.orderItems[0].product?.imageCover || 'غير معروف'}</div>
+                <img src={order.orderItems[0].product?.imageCover || "https://placehold.co"} alt={order.orderItems[0].product?.title} className="rounded-3 object-fit-cover" style={{ width: '85px', height: '85px' }} />
+                       
                       </td>
                       <td>
                         {order.orderItems?.map((item: any, i: number) => (
