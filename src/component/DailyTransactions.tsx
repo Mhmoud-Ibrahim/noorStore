@@ -198,7 +198,7 @@ export default function DailyTransactions() {
                   className={`btn fw-bold ${txType === "sale" ? "btn-warning text-dark" : "btn-outline-secondary text-white"}`}
                   onClick={() => setTxType("sale")}
                 >
-                  🛒 بيع كاش مالي
+                  🛒 بيع كاش نقدي
                 </button>
                 <button
                   type="button"
@@ -277,7 +277,10 @@ export default function DailyTransactions() {
                       />
                     </div>
                   </>
-                ) : (
+                ) :
+                txType === "expense" &&     
+                
+                (
                   <>
                     <div className="mb-3">
                       <label className="small text-light opacity-75 mb-2">
