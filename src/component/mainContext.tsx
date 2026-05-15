@@ -92,7 +92,8 @@ export interface mainContextType {
     user: UserData | null;
     logout: () => Promise<void>;
     token: string | null;
-    // إضافات السلة الجديدة
+    setLastInvoice: React.Dispatch<React.SetStateAction<any>>;
+    lastInvoice: any;
     cartCount: number;
     addToCart: (productId: string) => Promise<void>;
     getCartCount: () => Promise<void>;
@@ -104,7 +105,8 @@ export function MainProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<UserData | null>(null);
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState<string | null>(null);
-    
+    const [lastInvoice, setLastInvoice] = useState<any>(null); // لحفظ بيانات آخر فاتورة للطباعة
+
     // حالة السلة الجديدة
     const [cartCount, setCartCount] = useState<number>(0);
 
@@ -175,7 +177,7 @@ export function MainProvider({ children }: { children: ReactNode }) {
     return (
         <MainContext.Provider value={{ 
             user, setUser, loading, setLoading, logout, token,
-            cartCount, addToCart, getCartCount // تمرير قيم السلة
+            cartCount, addToCart, getCartCount,lastInvoice, setLastInvoice // استخراج وتحديث بيانات آخر فاتورة
         }}>
             {children}
         </MainContext.Provider>

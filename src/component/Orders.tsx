@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import api from '../component/api';
 import { toast } from 'react-toastify';
 import Loading from '../component/Loading.tsx';
+import { MainContext } from './mainContext';
 
 export default function OrderManagement() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -10,7 +11,12 @@ export default function OrderManagement() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true); // للتحكم في زر التالي
-
+   const context = useContext(MainContext);
+   
+ 
+     if (!context) return null;
+     const { lastInvoice } = context; // استخراج cartCount من الكونتكس
+ 
   // 1. جلب التقرير اليومي
   const fetchDailyReport = async () => {
     try {
@@ -63,6 +69,80 @@ export default function OrderManagement() {
     } catch (err: any) {
       toast.error(err.response?.data?.message || "فشل إلغاء الطلب");
     }
+  };
+  const handlePrintPDF = () => {
+    if (!lastInvoice) return;
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return toast.error("الرجاء السماح بالنوافذ المنبثقة لفتح الفاتورة");
+
+    // استخراج بيانات المنتج الأول من المصفوفة
+    const item = lastInvoice.orderItems?.[0];
+    const productTitle = item?.product?.title || "منتج عام";
+    const productPrice = item?.price || lastInvoice.totalAmount;
+    const employeeName = lastInvoice.user?.name || "كاشير النظام";
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>فاتورة بيع رقم #${lastInvoice._id.slice(-6)}</title>
+          <style>
+            body { font-family: Arial, sans-serif; direction: rtl; text-align: center; color: #000; padding: 10px; width: 80mm; margin: 0 auto; }
+            .header { border-bottom: 1px dashed #000; padding-bottom: 10px; margin-bottom: 10px; }
+            .title { font-size: 18px; font-weight: bold; margin: 5px 0; }
+            .info-line { display: flex; justify-content: space-between; font-size: 12px; margin: 3px 0; text-align: right; }
+            .table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+            .table th { border-bottom: 1px solid #000; padding: 5px; text-align: right; }
+            .table td { padding: 5px; text-align: right; }
+            .total-section { border-top: 1px dashed #000; padding-top: 5px; font-size: 14px; font-weight: bold; display: flex; justify-content: space-between; }
+            .footer { font-size: 10px; margin-top: 20px; border-top: 1px dashed #000; padding-top: 10px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="title">🧾 فاتورة بيع نقدي</div>
+            <p style="margin:2px 0; font-size:11px;">نظام إدارة الحسابات الكاش الفورية</p>
+          </div>
+          <div class="info-line"><span>رقم الفاتورة:</span> <span>#${lastInvoice._id.slice(-6)}</span></div>
+          <div class="info-line"><span>التاريخ:</span> <span>${new Date(lastInvoice.createdAt).toLocaleString('ar-EG')}</span></div>
+          <div class="info-line"><span>العميل:</span> <span>${lastInvoice.customerName || 'زبون نقدي'}</span></div>
+          <div class="info-line"><span>الموظف المسؤول:</span> <span>${employeeName}</span></div>
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>البيان</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <th>الإجمالي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${productTitle}</td>
+                <td>${item?.quantity || 1}</td>
+                <td>${productPrice} ج.م</td>
+                <td>${lastInvoice.totalAmount} ج.م</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="total-section">
+            <span>المبلغ الإجمالي المدفوع:</span>
+            <span>${lastInvoice.totalAmount} ج.م</span>
+          </div>
+
+          <div class="footer">
+            <p>شكراً لزيارتكم وثقتكم بنا!</p>
+            <p style="font-size:8px; color:#555;">نظام الحسابات والمستندات الذكية</p>
+          </div>
+          <script>
+            window.onload = function() { window.print(); window.close(); }
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   };
 
   return (
@@ -135,7 +215,13 @@ export default function OrderManagement() {
                         ))}
                       </td>
                       <td className="fw-bold text-warning">{order.totalAmount} ج.م</td>
-                      <td className="fw-bold text-warning">{order.notes}</td>
+                      <td className="fw-bold text-warning">
+                         {lastInvoice && (
+            <button onClick={handlePrintPDF} className="btn btn-success fw-bold px-4 rounded-pill shadow animation-pulse">
+              🖨️ طباعة فاتورة العملية الأخيرة (PDF)
+            </button>
+          )}
+                      </td>
                       <td>
                         <span className={`badge rounded-pill ${order.status === 'completed' ? 'bg-success' : 'bg-danger'}`}>
                           {order.status === 'completed' ? 'مكتمل' : 'ملغى'}

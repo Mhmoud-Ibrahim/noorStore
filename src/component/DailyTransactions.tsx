@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import api from "../component/api";
 import { toast } from "react-toastify";
+import { MainContext } from "./mainContext";
 
 export default function DailyTransactions() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [txType, setTxType] = useState<"sale" | "expense">("sale");
-  const [lastInvoice, setLastInvoice] = useState<any>(null); // لحفظ بيانات آخر فاتورة للطباعة
-
+  const context = useContext(MainContext);
+     
+   
+       if (!context) return null;
+       const { lastInvoice,setLastInvoice } = context; // استخراج cartCount من الكونتكس
+   
   // حقول الاستمارة مطابقة لبيانات الباك إند
   const [formData, setFormData] = useState({
     customerName: "",
