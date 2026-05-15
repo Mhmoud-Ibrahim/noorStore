@@ -189,6 +189,15 @@ export default function Profile() {
                     </span>
                     <i className="fas fa-chevron-left small opacity-50"></i>
                   </Link>
+ <Link
+                    to="/dailyTransaction"
+                    className="list-group-item list-group-item-action bg-transparent text-white border-secondary py-3 d-flex justify-content-between align-items-center"
+                  >
+                    <span>
+                      <i className="fas fa-calculator me-2 text-info"></i> الحسابات والمعاملات اليومية (كاش)
+                    </span>
+                    <i className="fas fa-chevron-left small opacity-50"></i>
+                  </Link>
                   <Link
                     to="/orders"
                     className="list-group-item list-group-item-action bg-transparent text-white border-0 py-3 d-flex justify-content-between align-items-center"
@@ -279,3 +288,4 @@ export default function Profile() {
     </div>
   );
 }
+

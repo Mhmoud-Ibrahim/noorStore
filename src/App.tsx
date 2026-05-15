@@ -25,6 +25,7 @@ import OrderManagement from "./component/Orders.tsx";
 import ForgotPassword from "./component/auth/ForgotPassword.tsx";
 import ResetPassword from "./component/auth/ResetPassword.tsx";
 import Dashboard from "./component/Dashboard";
+import DailyTransactions from "./component/DailyTransactions";
 
 function App() {
   let routers = createHashRouter([
@@ -47,6 +48,7 @@ function App() {
         { path: 'productManagement', element: <ProductManagement/> },
         { path: 'dashboard', element: <Dashboard/> },
         { path: 'orders', element: <OrderManagement/> },
+        { path: 'dailyTransaction', element: <DailyTransactions/> },
         { path: 'updateProduct/:id', element: <UpdateProduct/> },
         // { path: '*', element: <NotFound /> }
       ]
