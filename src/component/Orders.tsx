@@ -567,7 +567,7 @@ export default function OrderManagement() {
                          <img
                           src={
                              order.orderItems[0].product?.imageCover ||
-                             "https://placehold.co"
+                             "https://via.placeholder.com/150"
                            }
                            alt={order.orderItems[0].product?.title}
                            className="rounded-3 object-fit-cover"
