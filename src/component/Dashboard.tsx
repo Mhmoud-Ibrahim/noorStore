@@ -33,7 +33,7 @@ export default function Dashboard() {
       if (dates.from) params.append("from", dates.from);
       if (dates.to) params.append("to", dates.to);
 
-      const res = await api.get(`/api/dashboard/stats?${params.toString()}`);
+      const res = await api.get(`/api/stats?${params.toString()}`);
       if (res.data.message === "success") {
         setData(res.data.data);
       }
