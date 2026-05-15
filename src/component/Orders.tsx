@@ -30,7 +30,7 @@ export default function OrderManagement() {
       
       const fetchedOrders = res.data.orders || [];
       setOrders(fetchedOrders);
-      
+      console.log(fetchedOrders)
       // إذا كانت الطلبات المستلمة أقل من الـ limit، فهذا يعني أننا وصلنا للصفحة الأخيرة
       if (fetchedOrders.length < limit) {
         setHasMore(false);
@@ -103,8 +103,10 @@ export default function OrderManagement() {
               <thead className="text-secondary small">
                 <tr>
                   <th className="ps-4">التاريخ / الموظف</th>
+                  <th> صورة المنتج</th>
                   <th>المنتجات المباعة</th>
                   <th>الإجمالي</th>
+                  <th>طباعة الفاتورة PDF</th>
                   <th>الحالة</th>
                   <th className="text-center">إلغاء</th>
                 </tr>
@@ -121,6 +123,10 @@ export default function OrderManagement() {
                         <div className="small">{new Date(order.createdAt).toLocaleString('ar-EG')}</div>
                         <div className="text-info fw-bold small">{order.user?.name || 'غير معروف'}</div>
                       </td>
+                      <td className="ps-4">
+                
+                        <div className="text-info fw-bold small">{order.orderItems[0].product?.imageCover || 'غير معروف'}</div>
+                      </td>
                       <td>
                         {order.orderItems?.map((item: any, i: number) => (
                           <div key={i} className="small text-secondary">
@@ -129,6 +135,7 @@ export default function OrderManagement() {
                         ))}
                       </td>
                       <td className="fw-bold text-warning">{order.totalAmount} ج.م</td>
+                      <td className="fw-bold text-warning">{order.notes}</td>
                       <td>
                         <span className={`badge rounded-pill ${order.status === 'completed' ? 'bg-success' : 'bg-danger'}`}>
                           {order.status === 'completed' ? 'مكتمل' : 'ملغى'}
