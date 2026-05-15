@@ -545,13 +545,15 @@ export default function OrderManagement() {
             style={{ backgroundColor: "#1a1a1a", border: "1px solid #333" }}
           >
             <table className="table table-dark table-hover align-middle mb-0 text-start">
-              <thead className="text-secondary small">
+          
+               <thead className="text-secondary small">
                 <tr>
                   <th>رقم الطلب</th>
-                  <th>العميل</th>
-                  <th>المنتج الرئيسي</th>
-                  <th>الإجمالي</th>
                   <th>التاريخ</th>
+                  <th> صورة المنتج</th>                  
+                   <th>اسم المنتج</th>
+                  <th>العميل</th>
+                  <th>الإجمالي</th>
                   <th>الحالة</th>
                   <th className="text-center">الإجراءات</th>
                 </tr>
@@ -559,11 +561,23 @@ export default function OrderManagement() {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id}>
-                    <td>#{order._id.slice(-6)}</td>
-                    <td>{order.customerName || "زبون نقدي"}</td>
+                    <td>({order._id.slice(-6)})</td>
+                     <td>{new Date(order.createdAt).toLocaleDateString("ar-EG")}</td>
+                      <td className="ps-4">
+                         <img
+                          src={
+                             order.orderItems[0].product?.imageCover ||
+                             "https://placehold.co"
+                           }
+                           alt={order.orderItems[0].product?.title}
+                           className="rounded-3 object-fit-cover"
+                           style={{ width: "85px", height: "85px" }}
+                         />
+                       </td>
                     <td>{order.orderItems?.[0]?.product?.title || "منتج عام"}</td>
+                    <td>{order.customerName || "زبون نقدي"}</td>
                     <td>{order.totalAmount} ج.م</td>
-                    <td>{new Date(order.createdAt).toLocaleDateString("ar-EG")}</td>
+                   
                     <td>
                       <span className={`badge ${order.status === "cancelled" ? "bg-danger" : "bg-success"}`}>
                         {order.status === "cancelled" ? "ملغي ❌" : "مكتمل  "}
