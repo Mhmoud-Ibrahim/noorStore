@@ -225,7 +225,7 @@ export default function DailyTransactions() {
               {txType === 'sale' && selectedProduct ? (
                 <div className="text-start">
                   <div className="d-flex align-items-center gap-4 mb-4 p-3 rounded-3 bg-black" style={{ borderRight: '4px solid #ff6600' }}>
-                    <img src={selectedProduct.userImage || "https://placehold.co"} alt={selectedProduct.title} className="rounded-3 object-fit-cover" style={{ width: '85px', height: '85px' }} />
+                    <img src={selectedProduct.imageCover || "https://placehold.co"} alt={selectedProduct.title} className="rounded-3 object-fit-cover" style={{ width: '85px', height: '85px' }} />
                     <div>
                       <h4 className="fw-bold text-warning mb-1">{selectedProduct.title}</h4>
                       <span className={`badge ${selectedProduct.stock > 5 ? 'bg-success' : 'bg-danger'}`}>المخزون الحالي بالمستودع: {selectedProduct.stock} قطعة</span>
